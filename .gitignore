@@ -1,0 +1,32 @@
+# Dossiers à exclure
+/vendor/
+/node_modules/
+
+# Fichiers à exclure
+/.env
+/.env.example
+/.idea/
+/.vscode/
+Homestead.yaml
+Homestead.json
+
+# Fichiers de logs et caches
+/storage/*.log
+/bootstrap/cache/
+/public/storage/
+/public/hot/
+/storage/*.key
+.env.backup
+.phpunit.result.cache
+
+# Fichiers de configuration spécifiques
+/.phpunit.result.cache
+/.phpunit-watcher.yml
+
+# Fichiers de sauvegarde
+*.bak
+*.swp
+*~
+\#*\#
+.DS_Store
+Thumbs.db
