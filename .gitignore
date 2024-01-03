@@ -3,7 +3,7 @@
 /node_modules/
 utils/connexionDB.php
 
-/test/
+test.php
 # Fichiers à exclure
 /.env
 /.env.example

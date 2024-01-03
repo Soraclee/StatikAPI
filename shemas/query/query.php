@@ -6,25 +6,6 @@ use GraphQL\Type\Definition\Type;
 $queryType = new ObjectType([
     'name' => 'Query',
     "fields" => [
-        "getInfoChampByName" => [
-            "type" => $shemaLOLChampData,
-            "args" => [
-                "name" => Type::string()
-            ],
-            "resolve" => function ($root, $args) {
-                return DataStore::getInfoChampionByName($args['name']);
-            }
-        ],
-        "getIDChampByName" => [
-            "type" => Type::int(),
-            "args" => [
-                "name" => Type::string()
-            ],
-            "resolve" => function ($root, $args) {
-                $IDChamp = DataStore::searchChampionExist($args['name'])["idChamp"];
-                return $IDChamp;
-            }
-        ],
         "test" => [
             "type" => new ObjectType([
                 "name" => "test",
@@ -58,13 +39,14 @@ $queryType = new ObjectType([
                             "name" => Type::string()
                         ],
                         "resolve" => function ($root, $args) {
-                            $infosChamp =
-                                DataStore::getInfoChampionByName($args['name']);
-                            return $infosChamp;
+                            return DataStore::getInfoChampionByName($args['name']);
                         }
                     ],
                 ]
-            ])
+            ]),
+            "resolve" => function ($root, $args) {
+                return $root;
+            }
         ],
     ]
 ]);
