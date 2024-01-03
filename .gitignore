@@ -1,7 +1,9 @@
 # Dossiers à exclure
 /vendor/
 /node_modules/
+utils/connexionDB.php
 
+/test/
 # Fichiers à exclure
 /.env
 /.env.example
