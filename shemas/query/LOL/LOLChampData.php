@@ -1305,6 +1305,68 @@ $shemaLOLChampData = new ObjectType([
                 return $rootValue["lore"];
             }
         ],
+        "builds" => [
+            "type" => new ObjectType([
+                "name" => "LOLChampData_Builds",
+                "fields" => [
+                    "name" => [
+                        "type" => Type::string(),
+                        "resolve" => function ($rootValue) {
+                            return $rootValue["name"];
+                        }
+                    ],
+                    "gamesUsed" => [
+                        "type" => Type::int(),
+                        "resolve" => function ($rootValue) {
+                            return $rootValue["gamesUsed"];
+                        }
+                    ],
+                    "winRate" => [
+                        "type" => Type::float(),
+                        "resolve" => function ($rootValue) {
+                            return $rootValue["winRate"];
+                        }
+                    ],
+                    "role" => [
+                        "type" => Type::string(),
+                        "resolve" => function ($rootValue) {
+                            return $rootValue["role"];
+                        }
+                    ],
+                    "coreItems" => [
+                        "type" => Type::listOf(new ObjectType([
+                            "name" => "LOLChampData_Builds_CoreItems",
+                            "fields" => [
+                                "gamesUsed" => [
+                                    "type" => Type::int(),
+                                    "resolve" => function ($rootValue) {
+                                        return $rootValue["gamesUsed"];
+                                    }
+                                ],
+                                "winRate" => [
+                                    "type" => Type::float(),
+                                    "resolve" => function ($rootValue) {
+                                        return $rootValue["winRate"];
+                                    }
+                                ],
+                                "itemsIds" => [
+                                    "type" => Type::listOf(Type::int()),
+                                    "resolve" => function ($rootValue) {
+                                        return $rootValue["itemsIds"];
+                                    }
+                                ],
+                            ]
+                        ])),
+                        "resolve" => function ($rootValue) {
+                            return $rootValue["coreItems"];
+                        }
+                    ],
+                ]
+            ]),
+            "resolve" => function ($rootValue) {
+                return $rootValue;
+            }
+        ],
         "skins" => [
             "type" => Type::listOf(new ObjectType([
                 "name" => "LOLChampData_Skins",
