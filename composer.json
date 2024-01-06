@@ -1,5 +1,13 @@
 {
-    "require": {
-        "webonyx/graphql-php": "^15.8"
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/iignatov/LightOpenID"
     }
+  ],
+  "require": {
+    "webonyx/graphql-php": "^15.8",
+    "vlucas/phpdotenv": "^5.6",
+    "iignatov/lightopenid": "*"
+  }
 }

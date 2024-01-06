@@ -9,19 +9,19 @@ $shemaLOLChampData = new ObjectType([
         "id" => [
             "type" => Type::int(),
             "resolve" => function ($rootValue) {
-                return $rootValue["id"];
+                return $rootValue["infosChamp"]["id"];
             }
         ],
         "keyChamp" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["key"];
+                return $rootValue["infosChamp"]["key"];
             }
         ],
         "icon" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["icon"];
+                return "https://cdn.anemy.fr/statik/icons/champions/" . $rootValue["infosChamp"]["id"] . "/icon.png";
             }
         ],
         "names" => [
@@ -31,13 +31,13 @@ $shemaLOLChampData = new ObjectType([
                     "name" => [
                         "type" => Type::string(),
                         "resolve" => function ($rootValue) {
-                            return $rootValue["name"];
+                            return $rootValue["infosChamp"]["name"];
                         }
                     ],
                     "fullName" => [
                         "type" => Type::string(),
                         "resolve" => function ($rootValue) {
-                            return $rootValue["fullName"];
+                            return $rootValue["infosChamp"]["fullName"];
                         }
                     ]
                 ]
@@ -49,13 +49,13 @@ $shemaLOLChampData = new ObjectType([
         "title" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["title"];
+                return $rootValue["infosChamp"]["title"];
             }
         ],
         "resourceType" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["resource"];
+                return $rootValue["infosChamp"]["resource"];
             }
         ],
         "stats" => [
@@ -63,763 +63,142 @@ $shemaLOLChampData = new ObjectType([
                 "name" => "LOLChampData_Stats",
                 "fields" => [
                     "health" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_Health",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["health"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["health"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["health"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["health"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["health"] ?? null;
                         }
                     ],
+
                     "healthRegen" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_HealthRegen",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["healthRegen"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["healthRegen"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["healthRegen"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["healthRegen"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["healthRegen"] ?? null;
                         }
                     ],
                     "mana" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_Mana",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["mana"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["mana"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["mana"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["mana"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["mana"] ?? null;
                         }
                     ],
                     "manaRegen" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_ManaRegen",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["manaRegen"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["manaRegen"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["manaRegen"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["manaRegen"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["manaRegen"] ?? null;
                         }
                     ],
                     "armor" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_Armor",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["armor"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["armor"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["armor"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["armor"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["armor"] ?? null;
                         }
                     ],
-                    "magicResist" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_MagicResist",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["magicResist"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["magicResist"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["magicResist"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["magicResist"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                    "magicResistance" => [
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["magicResistance"] ?? null;
                         }
                     ],
                     "attackDamage" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackDamage",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDamage"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDamage"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDamage"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDamage"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackDamage"] ?? null;
                         }
                     ],
                     "attackSpeed" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackSpeed",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeed"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeed"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeed"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeed"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackSpeed"] ?? null;
                         }
                     ],
                     "attackSpeedRatio" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackSpeedRatio",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeedRatio"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeedRatio"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeedRatio"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackSpeedRatio"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackSpeedRatio"] ?? null;
                         }
                     ],
                     "attackCastTime" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackCastTime",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackCastTime"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackCastTime"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackCastTime"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackCastTime"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackCastTime"] ?? null;
                         }
                     ],
                     "attackTotalTime" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackTotalTime",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackTotalTime"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackTotalTime"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackTotalTime"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackTotalTime"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackTotalTime"] ?? null;
                         }
                     ],
                     "attackDelayOffset" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackDelayOffset",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
-                        }
-                    ],
-                    "attackDelayOffset" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackDelayOffset",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackDelayOffset"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
-                        "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackDelayOffset"] ?? null;
                         }
                     ],
                     "attackRange" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AttackRange",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackRange"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackRange"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackRange"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["attackRange"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["attackRange"] ?? null;
                         }
                     ],
                     "aramDamageTaken" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AramDamageTaken",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageTaken"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageTaken"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageTaken"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageTaken"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["aramDamageTaken"] ?? null;
                         }
                     ],
                     "aramDamageDealt" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AramDamageDealt",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageDealt"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageDealt"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageDealt"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramDamageDealt"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["aramDamageDealt"] ?? null;
                         }
                     ],
                     "aramHealing" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AramHealing",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramHealing"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramHealing"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramHealing"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramHealing"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["aramHealing"] ?? null;
                         }
                     ],
                     "aramShielding" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_AramShielding",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramShielding"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramShielding"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramShielding"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["aramShielding"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["aramShielding"] ?? null;
                         }
                     ],
                     "urfDamageTaken" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_UrfDamageTaken",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageTaken"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageTaken"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageTaken"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageTaken"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["urfDamageTaken"] ?? null;
                         }
                     ],
                     "urfDamageDealt" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_UrfDamageDealt",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageDealt"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageDealt"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageDealt"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfDamageDealt"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["urfDamageDealt"] ?? null;
                         }
                     ],
                     "urfHealing" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_UrfHealing",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfHealing"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfHealing"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfHealing"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfHealing"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["urfHealing"] ?? null;
                         }
                     ],
                     "urfShielding" => [
-                        "type" => new ObjectType([
-                            "name" => "LOLChampData_Stats_UrfShielding",
-                            "fields" => [
-                                "flat" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfShielding"]["flat"];
-                                    }
-                                ],
-                                "percent" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfShielding"]["percent"];
-                                    }
-                                ],
-                                "perLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfShielding"]["perLevel"];
-                                    }
-                                ],
-                                "percentPerLevel" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["stats"]["urfShielding"]["percentPerLevel"];
-                                    }
-                                ]
-                            ]
-                        ]),
+                        "type" => $shemaLOLChampData_Stats,
                         "resolve" => function ($rootValue) {
-                            return $rootValue;
+                            return $rootValue["urfShielding"] ?? null;
                         }
                     ],
                 ]
             ]),
             "resolve" => function ($rootValue) {
-                return $rootValue;
+                return $rootValue["infosChamp"]["stats"];
             }
         ],
         "roles" => [
             "type" => Type::listOf(Type::string()),
             "resolve" => function ($rootValue) {
-                return $rootValue["roles"];
+                return $rootValue["infosChamp"]["roles"];
             }
         ],
         "abilities" => [
@@ -1296,17 +675,17 @@ $shemaLOLChampData = new ObjectType([
                 ]
             ]),
             "resolve" => function ($rootValue) {
-                return $rootValue;
+                return $rootValue["infosChamp"];
             }
         ],
         "lore" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["lore"];
+                return $rootValue["infosChamp"]["lore"];
             }
         ],
         "builds" => [
-            "type" => new ObjectType([
+            "type" => Type::listOf(new ObjectType([
                 "name" => "LOLChampData_Builds",
                 "fields" => [
                     "name" => [
@@ -1334,37 +713,103 @@ $shemaLOLChampData = new ObjectType([
                         }
                     ],
                     "coreItems" => [
-                        "type" => Type::listOf(new ObjectType([
+                        "type" => new ObjectType([
                             "name" => "LOLChampData_Builds_CoreItems",
                             "fields" => [
-                                "gamesUsed" => [
-                                    "type" => Type::int(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["gamesUsed"];
-                                    }
-                                ],
-                                "winRate" => [
-                                    "type" => Type::float(),
-                                    "resolve" => function ($rootValue) {
-                                        return $rootValue["winRate"];
-                                    }
-                                ],
                                 "itemsIds" => [
                                     "type" => Type::listOf(Type::int()),
                                     "resolve" => function ($rootValue) {
-                                        return $rootValue["itemsIds"];
+                                        $itemsIds = [];
+                                        if ($rootValue) {
+                                            foreach ($rootValue as $r) {
+                                                $itemsIds[] = $r["idItem"];
+                                            }
+                                        }
+                                        return $itemsIds;
+                                    }
+                                ],
+                            ]
+                        ]),
+                        "resolve" => function ($rootValue) {
+                            if ($rootValue["coreItems"]) {
+                                return $rootValue["coreItems"];
+                            } else {
+                                return null;
+                            }
+                        }
+                    ],
+                    "pathItems" => [
+                        "type" => new ObjectType([
+                            "name" => "LOLChampData_Builds_PathItems",
+                            "fields" => [
+                                "itemsIds" => [
+                                    "type" => Type::listOf(Type::int()),
+                                    "resolve" => function ($rootValue) {
+                                        $itemsIds = [];
+                                        if ($rootValue) {
+                                            foreach ($rootValue as $r) {
+                                                $itemsIds[] = $r["idItem"];
+                                            }
+                                        }
+                                        return $itemsIds;
+                                    }
+                                ],
+                            ]
+                        ]),
+                        "resolve" => function ($rootValue) {
+                            if ($rootValue["pathItems"]) {
+                                return $rootValue["pathItems"];
+                            } else {
+                                return null;
+                            }
+                        }
+                    ],
+                    "skillOrders" => [
+                        "type" => Type::listOf(Type::int()),
+                        "resolve" => function ($rootValue) {
+                            $skillOrders = [];
+                            if ($rootValue["skillOrders"]) {
+                                foreach ($rootValue["skillOrders"] as $r) {
+                                    $skillOrders[] = $r["ability"];
+                                }
+                            }
+                            if (!empty($skillOrders)) {
+                                return $skillOrders;
+                            } else {
+                                return null;
+                            }
+                        }
+                    ],
+                    "summonerSpells" => [
+                        "type" => Type::listOf(new ObjectType([
+                            "name" => "LOLChampData_Builds_SummonerSpells",
+                            "fields" => [
+                                "spell1" => [
+                                    "type" => Type::int(),
+                                    "resolve" => function ($rootValue) {
+                                        return $rootValue["spell1"];
+                                    }
+                                ],
+                                "spell2" => [
+                                    "type" => Type::int(),
+                                    "resolve" => function ($rootValue) {
+                                        return $rootValue["spell2"];
                                     }
                                 ],
                             ]
                         ])),
                         "resolve" => function ($rootValue) {
-                            return $rootValue["coreItems"];
+                            if ($rootValue["summonerSpells"]) {
+                                return $rootValue["summonerSpells"];
+                            } else {
+                                return null;
+                            }
                         }
                     ],
                 ]
-            ]),
+            ])),
             "resolve" => function ($rootValue) {
-                return $rootValue;
+                return $rootValue["buildsChamp"];
             }
         ],
         "skins" => [
@@ -1609,13 +1054,13 @@ $shemaLOLChampData = new ObjectType([
                 ]
             ])),
             "resolve" => function ($rootValue) {
-                return $rootValue["skins"];
+                return $rootValue["infosChamp"]["skins"];
             }
         ],
         "releaseDate" => [
             "type" => Type::string(),
             "resolve" => function ($rootValue) {
-                return $rootValue["releaseDate"];
+                return $rootValue["infosChamp"]["releaseDate"];
             }
         ],
     ],

@@ -36,3 +36,33 @@ function requestHTTP($url, $method = 'GET', $data = array())
 
     return $response;
 }
+
+function xmlToArray($xmlString)
+{
+    $xml = simplexml_load_string($xmlString);
+    $json = json_encode($xml);
+    $array = json_decode($json, TRUE);
+    return $array;
+}
+
+function handleEmptyData()
+{
+    $error = [
+        "errors" => [
+            "message" => "Aucune donnée reçue ou données vides."
+        ]
+    ];
+    echo json_encode($error);
+    exit();
+}
+
+function handleUnsupportedMethod()
+{
+    $error = [
+        "errors" => [
+            "message" => "Méthode non supportée."
+        ]
+    ];
+    echo json_encode($error);
+    exit();
+}

@@ -3,6 +3,7 @@ require_once("vendor/autoload.php");
 require_once("datastore/functions.php");
 require_once("datastore/DataStore.php");
 require_once("utils/typeLoader.php");
+require_once("utils/errors.php");
 require_once("utils/cors.php");
 
 use GraphQL\GraphQL;
@@ -47,25 +48,3 @@ try {
 
 header("Content-Type: application/json");
 echo json_encode($output);
-
-function handleEmptyData()
-{
-    $error = [
-        "errors" => [
-            "message" => "Aucune donnée reçue ou données vides."
-        ]
-    ];
-    echo json_encode($error);
-    exit();
-}
-
-function handleUnsupportedMethod()
-{
-    $error = [
-        "errors" => [
-            "message" => "Méthode non supportée."
-        ]
-    ];
-    echo json_encode($error);
-    exit();
-}
