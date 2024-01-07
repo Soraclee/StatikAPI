@@ -159,6 +159,6 @@ $queryType = new ObjectType([
             "resolve" => function ($root, $args) {
                 return $root;
             }
-        ]
+        ],
     ]
 ]);

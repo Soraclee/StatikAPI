@@ -1,6 +1,5 @@
 <?php
 
-
 function requestHTTP($url, $method = 'GET', $data = array())
 {
     $method = strtoupper($method); // Assure que la méthode est en majuscules
