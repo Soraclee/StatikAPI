@@ -245,7 +245,21 @@ class DataStore
         $getLeaderboardCS2 = requestHTTP($urlApiLeaderboard, "GET");
         $parseLeaderboard = json_decode($getLeaderboardCS2, true);
 
-        return $parseLeaderboard;
+        $urlApiGithub = "https://api.github.com/repos/explodingcamera/cs2leaderboard/deployments";
+
+        $headers = array(
+            'User-Agent: Statik',
+        );
+
+        $getGithub = requestHTTP($urlApiGithub, "GET", array(), $headers);
+        $parseGithub = json_decode($getGithub, true);
+
+        $githubLastUpdated = $parseGithub[0]["created_at"];
+
+        return [
+            "leaderboardLastUpdated" => $githubLastUpdated,
+            "leaderboard" => $parseLeaderboard
+        ];
     }
 }
 

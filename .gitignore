@@ -4,6 +4,7 @@
 utils/connexionDB.php
 
 test.php
+test2.php
 # Fichiers à exclure
 /.env
 /.env.example

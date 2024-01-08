@@ -7,11 +7,9 @@ require "../openid/utils/openid.php";
 $openid = new LightOpenID('http://localhost/StatikApi/static/openid/steam.php');
 
 if (!$openid->mode) {
-    // Étape 1 : L'utilisateur n'est pas encore authentifié, redirigez-le vers Steam pour l'authentification
     $openid->identity = 'https://steamcommunity.com/openid';
     header('Location: ' . $openid->authUrl());
 } elseif ($openid->mode == 'cancel') {
-    // L'utilisateur a annulé l'authentification
     $jsonReturn = [
         "error" => [
             "code" => 1,

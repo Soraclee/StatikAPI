@@ -134,7 +134,7 @@ $queryType = new ObjectType([
                         }
                     ],
                     "getLeaderboard" => [
-                        "type" => Type::listOf($shemaCS2Leaderboard),
+                        "type" => $shemaCS2Leaderboard,
                         "args" => [
                             "region" => Type::string(),
                         ],
